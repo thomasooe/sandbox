@@ -1,21 +1,42 @@
 package com.tom.patterns.strategy;
 
 public class Job {
-	private String id;
+	private static int JOB_NUMBER = 1;
+	private int id = JOB_NUMBER++;
 	private User user;
 	private String content;
+	private final static int DEFAULT_PRIORITY = 50;
+	private int priority = DEFAULT_PRIORITY;
 	
-	public Job(User user, String content, int id) {
+	public Job(String content) {
+		this.setUser(null);
+		this.setContent(content);
+	}
+	
+	public Job(String content, int priority) {
+		this.setUser(null);
+		this.setContent(content);
+		this.priority = priority;
+	}
+	
+	public Job(User user, String content) {
 		this.setUser(user);
 		this.setContent(content);
-		this.setId(String.valueOf(id));
 	}
-	public String getId() {
-		return id;
+	
+	public Job(User user, String content, int priority) {
+		this.setUser(user);
+		this.setContent(content);
+		this.priority = priority;
 	}
-	public void setId(String id) {
-		this.id = id;
+	
+	public int getPriority() {
+		return this.priority;
 	}
+	public int getId() {
+		return this.id;
+	}
+	
 	public User getUser() {
 		return user;
 	}
