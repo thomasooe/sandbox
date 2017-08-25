@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<util:list id="cities">
+		<bean class="com.si.City" p:name="Chicago" p:state="IL" p:population="2853114" />
+		<bean class="com.si.City" p:name="Atlanta" p:state="GA" p:population="537958" />
+		<bean class="com.si.City" p:name="Dallas" p:state="TX" p:population="1279910" />
+		<bean class="com.si.City" p:name="Houston" p:state="TX" p:population="2242193" />
+		<bean class="com.si.City" p:name="Odessa" p:state="TX" p:population="90943" />
+		<bean class="com.si.City" p:name="El Paso" p:state="TX" p:population="613190" />
+		<bean class="com.si.City" p:name="Jal" p:state="NM" p:population="1996" />
+		<bean class="com.si.City" p:name="Las Cruces" p:state="NM" p:population="91865" />
+	</util:list>
 
 	<bean id="duke" class="com.si.PoeticJuggler">
-		<constructor-arg value="15" />
+		<constructor-arg value="#{15}" />
 		<!-- <constructor-arg ref="sonnet29" /> -->
 		<constructor-arg>
 			<bean class="com.si.Sonnet29" />
@@ -17,6 +29,11 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 		<!-- <property name="instrument"> <bean class="com.si.Saxophone" /> </property> -->
 	</bean>
 
+	<bean id="carl" class="com.si.Instrumentalist">
+		<property name="song" value="#{kenny.song}" />
+		<property name="instrument" value="#{kenny.instrument}"></property>
+	</bean>
+
 	<bean id="hank" class="com.si.OneManBand">
 		<property name="instruments">
 			<list>
@@ -25,6 +42,9 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 				<ref bean="harmonica" />
 			</list>
 		</property>
+
+		<property name="rdm" value="#{T(java.lang.Math).random()}"></property>
+
 	</bean>
 
 	<bean id="hankmap" class="com.si.OneManBandWithMap">
@@ -55,7 +75,15 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 	<bean id="sonnet29" class="com.si.Sonnet29" />
 
-	<bean id="theStage" class="com.si.Stage" factory-method="getInstance" />
+	<bean id="theStage" class="com.si.Stage" factory-method="getInstance">
+		<!-- <property name="city" value="#{cities[2]}"></property> -->
+		<!-- <property name="city" value="#{cities[T(java.lang.Math).random() * cities.size()]}" /> -->
+		
+		<!-- grösste Stadt -->
+		<property name="city" value="#{cities.^[population gt 100000]}" />
+	</bean>
+
+	<util:properties id="settings" location="classpath:application.properties" />
 
 	<bean id="auditorium" class="com.si.Auditorium" init-method="turnOnLights" destroy-method="turnOffLights" />
 </beans>

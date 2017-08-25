@@ -31,6 +31,10 @@ public class Instrumentalist implements Performer {
 		this.instrument = instrument;
 	}
 
+	public Instrument getInstrument() {
+		return instrument;
+	}
+
 	public int getAge() {
 		return age;
 	}
