@@ -1,6 +1,8 @@
 package com.sia;
 
-public class BraveKnight implements Knight {
+import org.springframework.beans.factory.BeanNameAware;
+
+public class BraveKnight implements Knight, BeanNameAware {
 	private String name;
 	private Quest quest;
 	
@@ -33,6 +35,11 @@ public class BraveKnight implements Knight {
 
 	public void setQuest(Quest quest) {
 		this.quest = quest;
+	}
+
+	@Override
+	public void setBeanName(String name) {
+		System.out.println("Set Bean Name:" + name);
 	}
 	
 }
