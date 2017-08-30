@@ -22,6 +22,12 @@ public class Instrumentalist implements Performer {
 	public void perform() throws PerformanceException {
 		System.out.print("Playing " + song + " : ");
 		instrument.play();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 

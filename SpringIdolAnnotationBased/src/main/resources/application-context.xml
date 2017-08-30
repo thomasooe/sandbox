@@ -13,10 +13,11 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.
 	<aop:config>
 		<aop:aspect ref="audience">
 			<aop:pointcut id="performance" expression="execution(* com.si.Performer.perform(..))" />
-			<aop:before pointcut-ref="performance" method="takeSeats" />
+			<aop:around pointcut-ref="performance" method="watchPerformance" />
+			<!-- <aop:before pointcut-ref="performance" method="takeSeats" />
 			<aop:before pointcut-ref="performance" method="turnOffCellPhones" />
 			<aop:after-returning pointcut-ref="performance" method="applaud" />
-			<aop:after-throwing pointcut-ref="performance" method="demandRefund" />
+			<aop:after-throwing pointcut-ref="performance" method="demandRefund" /> -->
 		</aop:aspect>
 	</aop:config>
 
