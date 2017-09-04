@@ -20,6 +20,9 @@ public class SIRunner {
 		Performer p = (Performer) ctx.getBean("kenny123");
 		p.perform();
 		
+		Thinker t = (Thinker) ctx.getBean("arthur");	
+		t.thinkOfSomething("Where is the grail");
+		
 		Stage stage = (Stage) ctx.getBean("theStage");
 		System.out.println(stage.toString());
 		

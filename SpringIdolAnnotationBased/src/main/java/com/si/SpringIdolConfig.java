@@ -21,6 +21,18 @@ public class SpringIdolConfig {
 	}
 	
 	@Bean
+	public Magician merlin() {
+		Magician merlin = new Magician();
+		return merlin;
+	}
+	
+	@Bean
+	public Volunteer arthur() {
+		Volunteer arthur = new Volunteer();
+		return arthur;
+	}
+	
+	@Bean
 	public Guitar guitar123() {
 		return new Guitar();
 	}
