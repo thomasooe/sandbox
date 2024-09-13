@@ -16,4 +16,11 @@ export class UserComponent {
   get imagePath(){ 
     return 'assets/users/' + this.selectedUser.avatar;
    }
+
+   onSelectUser() {
+    const ramdomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
+    this.selectedUser = DUMMY_USERS[ramdomIndex]
+
+    console.log("new Index is " + ramdomIndex)
+   }
 }
