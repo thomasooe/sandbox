@@ -1,8 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
-
-import { DUMMY_USERS } from '../dummy-users';
-
-const ramdomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-user',
@@ -11,17 +7,12 @@ const ramdomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-  selectedUser = signal(DUMMY_USERS[ramdomIndex]);
-  imagePath = computed(() => 'assets/users/' + this.selectedUser().avatar)
+  @Input() avatar!: string;
+  @Input() name!: string;
 
-  //get imagePath(){ 
-  //  return 'assets/users/' + this.selectedUser().avatar;
-  // }
-
-   onSelectUser() {
-    const ramdomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
-    this.selectedUser.set(DUMMY_USERS[ramdomIndex]);
-
-    console.log("new Index is " + ramdomIndex)
-   }
+  get imagePath() {
+    return 'assets/users/' + this.avatar;
+  }
+  
+  onSelectUser() {}
 }
