@@ -6,5 +6,5 @@
     <li><app-user [id]="users[1].id" [avatar]="users[1].avatar" [name]="users[1].name" (select)="onSelectUser($event)"/></li>
   </ul>
 
-  TASKS OF USER
+  <app-tasks [name]="selectedUser.name" />
 </main>
