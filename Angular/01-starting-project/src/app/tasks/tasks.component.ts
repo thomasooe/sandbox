@@ -16,14 +16,14 @@ export class TasksComponent {
   @Input({required: true}) name!: string;
   isAddingTask = false;
   
-  private taksService = inject(TasksService);
+  private tasksService = inject(TasksService);
   
  get selectedUserTasks() { 
-  return this.taksService.gerUserTasks(this.userId);
+  return this.tasksService.gerUserTasks(this.userId);
  }
 
  onCompleteTask(id: string) {
-    this.taksService.removeTask(id);
+    this.tasksService.removeTask(id);
  }
 
  onStartAddTask() {
