@@ -12,12 +12,12 @@ import { TasksService } from '../tasks/tasks.service';
   styleUrl: './new-task.component.css'
 })
 export class NewTaskComponent {
-  @Input({ required: true}) userId!: string;
+  @Input({ required: true }) userId!: string;
   @Output() close = new EventEmitter<void>();
-  
+
   enteredTitle = '';
   enteredSummary = '';
-  enteredDate = '';  
+  enteredDate = '';
 
   private taksService = inject(TasksService)
 

@@ -12,21 +12,21 @@ import { TasksService } from './tasks.service';
   styleUrl: './tasks.component.css'
 })
 export class TasksComponent {
-  @Input({required: true}) userId!: string;
-  @Input({required: true}) name!: string;
+  @Input({ required: true }) userId!: string;
+  @Input({ required: true }) name!: string;
   isAddingTask = false;
-  
+
   private tasksService = inject(TasksService);
-  
- get selectedUserTasks() { 
-  return this.tasksService.gerUserTasks(this.userId);
- }
 
- onStartAddTask() {
-  this.isAddingTask = true;
- }
+  get selectedUserTasks() {
+    return this.tasksService.gerUserTasks(this.userId);
+  }
 
- onCloseAddTask() {
-  this.isAddingTask = false;
- }
+  onStartAddTask() {
+    this.isAddingTask = true;
+  }
+
+  onCloseAddTask() {
+    this.isAddingTask = false;
+  }
 }

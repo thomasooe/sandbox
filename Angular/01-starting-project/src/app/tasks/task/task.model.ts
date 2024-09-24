@@ -7,7 +7,7 @@ export interface Task {
 }
 
 export interface NewTaskData {
-    title: string; 
-    summary: string; 
+    title: string;
+    summary: string;
     date: string;
 }

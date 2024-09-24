@@ -12,8 +12,8 @@ import { TasksService } from '../tasks.service';
   styleUrl: './task.component.css'
 })
 export class TaskComponent {
-  @Input({required: true}) task!: Task;
-  
+  @Input({ required: true }) task!: Task;
+
   private tasksService = inject(TasksService)
 
   onCompleteTask() {
