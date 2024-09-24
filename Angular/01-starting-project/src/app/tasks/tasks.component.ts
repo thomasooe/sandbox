@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { TaskComponent } from "./task/task.component";
 import { NewTaskComponent } from "../new-task/new-task.component";
 import { type NewTaskData } from './task/task.model';
@@ -16,14 +16,14 @@ export class TasksComponent {
   @Input({required: true}) name!: string;
   isAddingTask = false;
   
-  constructor(private tasksService: TasksService) {}
-
+  private taksService = inject(TasksService);
+  
  get selectedUserTasks() { 
-  return this.tasksService.gerUserTasks(this.userId);
+  return this.taksService.gerUserTasks(this.userId);
  }
 
  onCompleteTask(id: string) {
-    this.tasksService.removeTask(id);
+    this.taksService.removeTask(id);
  }
 
  onStartAddTask() {
