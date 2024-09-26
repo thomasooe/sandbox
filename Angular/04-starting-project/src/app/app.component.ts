@@ -10,11 +10,11 @@ import { InvestmentResultsComponent } from './investment-results/investment-resu
   imports: [HeaderComponent, UserInputComponent, InvestmentResultsComponent]
 })
 export class AppComponent {
-  calculateInvestmentResults(data: {initialInvestment: number, duration: number, expectedReturn: number, annualInvestment: number}) {
-    const {initialInvestment, duration, expectedReturn, annualInvestment} = data;
+  onCalculateInvestmentResults(data: { initialInvestment: number, duration: number, expectedReturn: number, annualInvestment: number }) {
+    const { initialInvestment, duration, expectedReturn, annualInvestment } = data;
     const annualData = [];
     let investmentValue = initialInvestment;
-  
+
     for (let i = 0; i < duration; i++) {
       const year = i + 1;
       const interestEarnedInYear = investmentValue * (expectedReturn / 100);
@@ -31,6 +31,7 @@ export class AppComponent {
       });
     }
 
-    return annualData;
+    console.log(annualData);
+    //return annualData;
   }
 }
