@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Input, ViewEncapsulation, inject } from '@angular/core';
+import { Component, ContentChild, ElementRef, Input, ViewEncapsulation, inject } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -14,11 +14,14 @@ import { Component, ElementRef, HostListener, Input, ViewEncapsulation, inject }
 })
 export class ControlComponent {
   @Input({required: true}) label!: string;
-  private el = inject(ElementRef); // programmatic access to the host element
+  private readonly el = inject(ElementRef); // programmatic access to the host element
+  @ContentChild('input') private readonly control?: ElementRef<HTMLInputElement | HTMLTextAreaElement>;
+
 
   //@HostListener('click')
   onClick() {
     console.log('click');
+    console.log(this.control?.nativeElement.name);
     //console.log(this.el);
   }
 }
