@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class NewTicketComponent {
   //@ViewChild('form') form?: ElementRef<HTMLFormElement>;
-  private form = viewChild.required<ElementRef<HTMLFormElement>>('form');
+  private readonly form = viewChild.required<ElementRef<HTMLFormElement>>('form');
 
   onSubmit(titleElement: string, requestElement: string) {
     console.dir(titleElement);
