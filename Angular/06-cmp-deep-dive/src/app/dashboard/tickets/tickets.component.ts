@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NewTicketComponent } from './new-ticket/new-ticket.component';
-import { ButtonComponent } from '../../shared/button/button.component';
 
 @Component({
   selector: 'app-tickets',
