@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, output } from '@angular/core';
 import { ButtonComponent } from '../../../shared/button/button.component';
 import { ControlComponent } from '../../../shared/control/control.component';
 import { FormsModule } from '@angular/forms';
@@ -13,10 +13,11 @@ import { FormsModule } from '@angular/forms';
 export class NewTicketComponent implements AfterViewInit {
   @ViewChild('form') form?: ElementRef<HTMLFormElement>;
   //private readonly form = viewChild.required<ElementRef<HTMLFormElement>>('form');
+  add = output<{title: string; text: string}>();
 
   onSubmit(titleElement: string, requestElement: string) {
     console.dir(titleElement);
-
+    this.add.emit({title: titleElement, text: requestElement});
     this.form?.nativeElement.reset();
     }
 
