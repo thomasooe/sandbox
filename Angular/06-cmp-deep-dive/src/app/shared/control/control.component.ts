@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ContentChild, ElementRef, Input, ViewEncapsulation, inject } from '@angular/core';
+import { AfterContentInit, Component, ContentChild, ElementRef, Input, ViewEncapsulation, afterNextRender, afterRender, inject } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -10,12 +10,22 @@ import { AfterContentInit, Component, ContentChild, ElementRef, Input, ViewEncap
   host: {
     class: 'control',
     '(click)': 'onClick()'
-}
+  }
 })
 export class ControlComponent implements AfterContentInit {
-  @Input({required: true}) label!: string;
+  @Input({ required: true }) label!: string;
   private readonly el = inject(ElementRef); // programmatic access to the host element
   @ContentChild('input') private readonly control?: ElementRef<HTMLInputElement | HTMLTextAreaElement>;
+
+  constructor() {
+    afterRender(() => {
+      console.log("After Render");
+    });
+
+    afterNextRender(() => {
+      console.log("After Next Render");
+    });
+  }
 
   //@HostListener('click')
   onClick() {
