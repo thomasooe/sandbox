@@ -19,6 +19,6 @@ export class TicketComponent {
   }
 
   onMarkAsCompleted() {
-    this.close.emit()
+    this.close.emit();
   }
 }
