@@ -1,4 +1,5 @@
 import { Component, DestroyRef, OnInit, effect, inject, signal } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 import { interval, map } from 'rxjs';
 
@@ -9,11 +10,16 @@ import { interval, map } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   clickCount = signal(0);
+  clickCount$ = toObservable(this.clickCount);
   private destroyRef = inject(DestroyRef);
 
   constructor() {
-    effect(() => {
-      console.log(`Clicked Button ${this.clickCount()} times.`)
+    //effect(() => {
+    //  console.log(`Clicked Button ${this.clickCount()} times.`)
+    //});
+
+    this.clickCount$.subscribe({ 
+      next: (val) => console.log(`$Clicked Button ${this.clickCount()} times.`)
     });
   }
 
