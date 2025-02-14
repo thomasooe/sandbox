@@ -18,9 +18,12 @@ export class AppComponent implements OnInit {
     //  console.log(`Clicked Button ${this.clickCount()} times.`)
     //});
 
-    this.clickCount$.subscribe({ 
+    const subscription = this.clickCount$.subscribe({ 
       next: (val) => console.log(`$Clicked Button ${this.clickCount()} times.`)
     });
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
+    })
   }
 
   ngOnInit(): void {
