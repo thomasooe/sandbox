@@ -19,9 +19,10 @@ export class AvailablePlacesComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
 
   ngOnInit() {
-        const subscription = this.httpClient.get<{places: Place[]}>('http://localhost:3000/places').subscribe({
-          next: (resData) => {
-            console.log(resData.places);
+        const subscription = this.httpClient.get<{places: Place[]}>('http://localhost:3000/places', {observe: 'response'}).subscribe({
+          next: (response) => {
+            console.log(response);
+            console.log(response.body?.places);
           }
         }); /// Port 3000 ist der default port
 
